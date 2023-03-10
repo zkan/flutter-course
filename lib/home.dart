@@ -21,43 +21,43 @@ class _HomePageState extends State<HomePage> {
 
   final calculator = Calculator();
 
-  @override
-  void initState() {
-    // เราจะเรียก API แล้วก็เซตค่าต่าง ๆ ที่ initState นี้ เราจะทำก่อน super
-    print("initState on HomePage");
+  // @override
+  // void initState() {
+  //   // เราจะเรียก API แล้วก็เซตค่าต่าง ๆ ที่ initState นี้ เราจะทำก่อน super
+  //   print("initState on HomePage");
 
-    fullName = "Kan 1";
-    Future.delayed(Duration(seconds: 2), () {
-      setState(() {
-        print("setState on HomePage");
-        fullName = "Kan 2";
-      });
-    });
+  //   fullName = "Kan 1";
+  //   Future.delayed(Duration(seconds: 2), () {
+  //     setState(() {
+  //       print("setState on HomePage");
+  //       fullName = "Kan 2";
+  //     });
+  //   });
 
-    Future.delayed(Duration(seconds: 10), () {
-      setState(() {
-        print("setState on HomePage again");
-        fullName = "";
-      });
-    });
+  //   Future.delayed(Duration(seconds: 10), () {
+  //     setState(() {
+  //       print("setState on HomePage again");
+  //       fullName = "";
+  //     });
+  //   });
 
-    super.initState();
+  //   super.initState();
 
-    // ถ้าเป็นของที่ต้องเขียนหน้าจอ จะต้องมาเขียนหลัง super เพราะต้องรอให้ render UI ออกมาก่อน
-  }
+  //   // ถ้าเป็นของที่ต้องเขียนหน้าจอ จะต้องมาเขียนหลัง super เพราะต้องรอให้ render UI ออกมาก่อน
+  // }
 
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
+  // @override
+  // void didChangeDependencies() {
+  //   // TODO: implement didChangeDependencies
 
-    // จะใช้ listen เรื่องต่าง ๆ เช่น รอ user scrolls หน้าจอ
-    var s = ScrollController();
-    s.addListener(() {});
+  //   // จะใช้ listen เรื่องต่าง ๆ เช่น รอ user scrolls หน้าจอ
+  //   var s = ScrollController();
+  //   s.addListener(() {});
 
-    print("didChangeDependencies on HomePage");
+  //   print("didChangeDependencies on HomePage");
 
-    super.didChangeDependencies();
-  }
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -180,6 +180,7 @@ class CalculatorButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      key: Key("button-$label"),
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),
