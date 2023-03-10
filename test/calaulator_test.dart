@@ -33,5 +33,17 @@ void main() {
       // Assert or Then
       expect(calculator.value, "12");
     });
+
+    test("allClear should reset all values", () {
+      calculator.value = "2";
+      calculator.operator = "x";
+      calculator.oldValue = "6";
+
+      calculator.allClear();
+
+      expect(calculator.value, "0");
+      expect(calculator.operator, "");
+      expect(calculator.oldValue, "");
+    });
   });
 }
