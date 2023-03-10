@@ -17,6 +17,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late String fullName;
 
+  String value = "0";
+  String operator = "";
+  String oldValue = "";
+
   @override
   void initState() {
     // เราจะเรียก API แล้วก็เซตค่าต่าง ๆ ที่ initState นี้ เราจะทำก่อน super
@@ -71,45 +75,62 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              Text(value,
+                  style: const TextStyle(
+                    fontSize: 54,
+                    color: Colors.white,
+                  )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CalculatorButton(
-                      label: "AC",
-                      labelColor: Colors.white,
-                      bgColor: Colors.grey,
-                      onPressed: () {}),
+                    label: "AC",
+                    labelColor: Colors.white,
+                    bgColor: Colors.grey,
+                    onPressed: () {
+                      setState(() {
+                        value = "0";
+                      });
+                    },
+                  ),
                   CalculatorButton(
-                      label: "=",
-                      labelColor: Colors.white,
-                      bgColor: Colors.grey.shade800,
-                      onPressed: () {}),
+                    label: "=",
+                    labelColor: Colors.white,
+                    bgColor: Colors.grey.shade800,
+                    onPressed: calcualte,
+                  ),
                 ],
               ),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CalculatorButton(
-                      label: "7",
-                      labelColor: Colors.white,
-                      bgColor: Colors.grey.shade800,
-                      onPressed: () {}),
+                    label: "7",
+                    labelColor: Colors.white,
+                    bgColor: Colors.grey.shade800,
+                    onPressed: () => onTabOperand("7"),
+                  ),
                   CalculatorButton(
-                      label: "8",
-                      labelColor: Colors.white,
-                      bgColor: Colors.grey.shade800,
-                      onPressed: () {}),
+                    label: "8",
+                    labelColor: Colors.white,
+                    bgColor: Colors.grey.shade800,
+                    onPressed: () => onTabOperand("8"),
+                  ),
                   CalculatorButton(
-                      label: "9",
-                      labelColor: Colors.white,
-                      bgColor: Colors.grey.shade800,
-                      onPressed: () {}),
+                    label: "9",
+                    labelColor: Colors.white,
+                    bgColor: Colors.grey.shade800,
+                    onPressed: () => onTabOperand("9"),
+                  ),
                   CalculatorButton(
-                      label: "x",
-                      labelColor: Colors.white,
-                      bgColor: Colors.amber.shade800,
-                      onPressed: () {}),
+                    label: "x",
+                    labelColor: Colors.white,
+                    bgColor: Colors.amber.shade800,
+                    onPressed: () => onTabOperator("x"),
+                  ),
                 ],
               ),
             ],
@@ -117,6 +138,28 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void onTabOperand(String operand) {
+    setState(() {
+      if (operator.isNotEmpty) oldValue = value;
+      value = operand;
+
+      print({"value": value, "operator": operator, "oldValue": oldValue});
+    });
+  }
+
+  void onTabOperator(String operator) {
+    setState(() {
+      this.operator = operator;
+    });
+  }
+
+  void calcualte() {
+    setState(() {
+      value = ((int.tryParse(oldValue) ?? 0) * (int.tryParse(value) ?? 0))
+          .toString();
+    });
   }
 }
 
@@ -141,12 +184,17 @@ class CalculatorButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),
         backgroundColor: bgColor,
-        fixedSize: Size(MediaQuery.of(context).size.width * 0.2,
-            MediaQuery.of(context).size.height * 0.2),
+        fixedSize: Size(
+          MediaQuery.of(context).size.width * 0.2,
+          MediaQuery.of(context).size.height * 0.2,
+        ),
       ),
       child: Text(
         label,
-        style: TextStyle(color: labelColor, fontSize: 24),
+        style: TextStyle(
+          color: labelColor,
+          fontSize: 24,
+        ),
       ),
     );
   }
