@@ -89,11 +89,7 @@ class _HomePageState extends State<HomePage> {
                     label: "AC",
                     labelColor: Colors.white,
                     bgColor: Colors.grey,
-                    onPressed: () {
-                      setState(() {
-                        value = "0";
-                      });
-                    },
+                    onPressed: allClear,
                   ),
                   CalculatorButton(
                     label: "=",
@@ -138,6 +134,14 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void allClear() {
+    setState(() {
+      value = "0";
+      operator = "";
+      oldValue = "";
+    });
   }
 
   void onTabOperand(String operand) {
