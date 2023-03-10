@@ -9,6 +9,9 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets("Multiply one digit number", (WidgetTester tester) async {
+    // Set ขนาดของหน้าจอในการทดสอบ
+    tester.binding.window.physicalSizeTestValue = const Size(1170, 2532);
+
     // // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(
       home: HomePage(name: "Kan Ouivirach"),
