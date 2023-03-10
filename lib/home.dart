@@ -1,6 +1,8 @@
 import 'package:calculator/full_name.dart';
 import 'package:flutter/material.dart';
 
+import 'calculator.dart';
+
 class HomePage extends StatefulWidget {
   String name;
   HomePage({required this.name, super.key}) {
@@ -17,9 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late String fullName;
 
-  String value = "0";
-  String operator = "";
-  String oldValue = "";
+  final calculator = Calculator();
 
   @override
   void initState() {
@@ -77,11 +77,13 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(value,
-                  style: const TextStyle(
-                    fontSize: 54,
-                    color: Colors.white,
-                  )),
+              Text(
+                calculator.value,
+                style: const TextStyle(
+                  fontSize: 54,
+                  color: Colors.white,
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -138,31 +140,25 @@ class _HomePageState extends State<HomePage> {
 
   void allClear() {
     setState(() {
-      value = "0";
-      operator = "";
-      oldValue = "";
+      calculator.allClear();
     });
   }
 
   void onTabOperand(String operand) {
     setState(() {
-      if (operator.isNotEmpty) oldValue = value;
-      value = operand;
-
-      print({"value": value, "operator": operator, "oldValue": oldValue});
+      calculator.onTabOperand(operand);
     });
   }
 
   void onTabOperator(String operator) {
     setState(() {
-      this.operator = operator;
+      calculator.onTabOperator(operator);
     });
   }
 
   void calcualte() {
     setState(() {
-      value = ((int.tryParse(oldValue) ?? 0) * (int.tryParse(value) ?? 0))
-          .toString();
+      calculator.calculate();
     });
   }
 }
