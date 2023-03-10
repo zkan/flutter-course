@@ -1,8 +1,13 @@
-import 'package:calculator/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
+
+import 'package:calculator/home.dart';
 
 void main() {
+  // ใช้ integration test
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
   testWidgets("Multiply one digit number", (WidgetTester tester) async {
     // // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(

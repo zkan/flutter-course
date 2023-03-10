@@ -71,67 +71,69 @@ class _HomePageState extends State<HomePage> {
       // body: fullName.isEmpty ? Container() : FullNameWidget(fullName: fullName),
       // body: FullNameWidget(fullName: fullName),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                calculator.value,
-                style: const TextStyle(
-                  fontSize: 54,
-                  color: Colors.white,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  calculator.value,
+                  style: const TextStyle(
+                    fontSize: 54,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CalculatorButton(
-                    label: "AC",
-                    labelColor: Colors.white,
-                    bgColor: Colors.grey,
-                    onPressed: allClear,
-                  ),
-                  CalculatorButton(
-                    label: "=",
-                    labelColor: Colors.white,
-                    bgColor: Colors.grey.shade800,
-                    onPressed: calcualte,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CalculatorButton(
-                    label: "7",
-                    labelColor: Colors.white,
-                    bgColor: Colors.grey.shade800,
-                    onPressed: () => onTabOperand("7"),
-                  ),
-                  CalculatorButton(
-                    label: "8",
-                    labelColor: Colors.white,
-                    bgColor: Colors.grey.shade800,
-                    onPressed: () => onTabOperand("8"),
-                  ),
-                  CalculatorButton(
-                    label: "9",
-                    labelColor: Colors.white,
-                    bgColor: Colors.grey.shade800,
-                    onPressed: () => onTabOperand("9"),
-                  ),
-                  CalculatorButton(
-                    label: "x",
-                    labelColor: Colors.white,
-                    bgColor: Colors.amber.shade800,
-                    onPressed: () => onTabOperator("x"),
-                  ),
-                ],
-              ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CalculatorButton(
+                      label: "AC",
+                      labelColor: Colors.white,
+                      bgColor: Colors.grey,
+                      onPressed: allClear,
+                    ),
+                    CalculatorButton(
+                      label: "=",
+                      labelColor: Colors.white,
+                      bgColor: Colors.grey.shade800,
+                      onPressed: calcualte,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CalculatorButton(
+                      label: "7",
+                      labelColor: Colors.white,
+                      bgColor: Colors.grey.shade800,
+                      onPressed: () => onTabOperand("7"),
+                    ),
+                    CalculatorButton(
+                      label: "8",
+                      labelColor: Colors.white,
+                      bgColor: Colors.grey.shade800,
+                      onPressed: () => onTabOperand("8"),
+                    ),
+                    CalculatorButton(
+                      label: "9",
+                      labelColor: Colors.white,
+                      bgColor: Colors.grey.shade800,
+                      onPressed: () => onTabOperand("9"),
+                    ),
+                    CalculatorButton(
+                      label: "x",
+                      labelColor: Colors.white,
+                      bgColor: Colors.amber.shade800,
+                      onPressed: () => onTabOperator("x"),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
